@@ -18,8 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
-    [self drawMyLayer];
+    self.view.backgroundColor = [UIColor whiteColor];
+//    [self drawMyLayer];
     [self drawMyLayerByDelegate];
 }
 
@@ -59,6 +59,21 @@
 - (void)drawMyLayerByDelegate {
     CGSize size = [UIScreen mainScreen].bounds.size;
     
+    CALayer *shadowLayer = [[CALayer alloc] init];
+//    shadowLayer.backgroundColor = [UIColor whiteColor].CGColor;
+    shadowLayer.position = CGPointMake(size.width/2, size.height/2);
+    shadowLayer.bounds = CGRectMake(0, 0, kViewWidth, kViewWidth);
+    shadowLayer.cornerRadius = kViewWidth/2;
+    shadowLayer.shadowColor = [UIColor grayColor].CGColor;
+    shadowLayer.shadowOffset = CGSizeMake(0, 0);
+    shadowLayer.shadowRadius = 3;
+    shadowLayer.shadowOpacity = 1;
+//    layer.delegate = self;
+    [self.view.layer addSublayer:shadowLayer];
+    //设置边框
+    shadowLayer.borderColor=[UIColor whiteColor].CGColor;
+    shadowLayer.borderWidth=2;
+
     CALayer *layer = [[CALayer alloc] init];
     layer.backgroundColor = [UIColor redColor].CGColor;
     layer.position = CGPointMake(size.width/2, size.height/2);
